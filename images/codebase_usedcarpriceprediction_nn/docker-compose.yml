@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  codebase_usedcarpriceprediction_nn:
+    #build: .
+    image: hammadurrehman/codebase_usedcarpriceprediction_nn:1.0
+    volumes:
+      - ai_system:/tmp
+    command:
+      - sh
+      - "-c"
+      - |
+       rm -rf /tmp/codeBase/ && mkdir -p /tmp/codeBase/ && cp -r /codeBase/ /tmp/;
+
+volumes:
+  ai_system:
+    external: true

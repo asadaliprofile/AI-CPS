@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  knowledgebase_usedcarpriceprediction:
+    #build: .
+    image: hammadurrehman/knowledgebase_usedcarpriceprediction:1.0
+    volumes:
+      - ai_system:/tmp
+    command:
+      - sh
+      - "-c"
+      - |
+       rm -rf /tmp/knowledgeBase/ && mkdir -p /tmp/knowledgeBase/ && cp -r /knowledgeBase/ /tmp/;
+
+volumes:
+  ai_system:
+    external: true

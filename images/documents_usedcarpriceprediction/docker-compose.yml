@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  documents_usedcarpriceprediction:
+    #build: .
+    image: hammadurrehman/documents_usedcarpriceprediction:1.0
+    volumes:
+      - ai_system:/tmp
+    command:
+      - sh
+      - "-c"
+      - |
+       rm -rf /tmp/documents/ && mkdir -p /tmp/documents/ && cp -r /documents/ /tmp/;
+
+volumes:
+  ai_system:
+      external: true

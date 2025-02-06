@@ -1,7 +1,10 @@
 FROM busybox
 
-COPY data/currentOlsSolution.pkl /tmp/knowledgeBase/
+COPY ../../data/currentOlsSolution.pkl /knowledgeBase/
 
-COPY data/currentAiSolution.h5 /tmp/knowledgeBase/
+COPY ../../data/currentAiSolution.h5 /knowledgeBase/
 
-COPY images/knowledgebase_usedcarpriceprediction/ReadMe.md /tmp/knowledgeBase/
+COPY images/knowledgebase_usedcarpriceprediction/ReadMe.md /knowledgeBase/
+
+# Set working directory
+WORKDIR /tmp/knowledgeBase

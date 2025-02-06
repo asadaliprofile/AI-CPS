@@ -1,0 +1,63 @@
+version: "3.9"
+services:
+  
+  learningbase_usedcarpriceprediction:
+    image: hammadurrehman/learningbase_usedcarpriceprediction:1.0
+    volumes:
+       - ai_system:/tmp
+    command:
+    - sh
+    - "-c"
+    - |
+      rm -rf /tmp/learningBase/ && mkdir -p /tmp/learningBase/ && cp -r /learningBase/ /tmp/;
+  
+  knowledgebase_usedcarpriceprediction:
+    image: hammadurrehman/knowledgebase_usedcarpriceprediction:1.0
+    volumes:
+       - ai_system:/tmp
+    command:
+      - sh
+      - "-c"
+      - |
+        rm -rf /tmp/knowledgeBase/ && mkdir -p /tmp/knowledgeBase/ && cp -r /knowledgeBase/ /tmp/;
+
+  activationbase_usedcarpriceprediction:
+    image: hammadurrehman/activationbase_usedcarpriceprediction:1.0
+    volumes:
+       - ai_system:/tmp
+    command:
+    - sh
+    - "-c"
+    - |
+      rm -rf /tmp/activationBase/ && mkdir -p /tmp/activationBase/ && cp -r /activationBase/ /tmp/;
+
+  documents_usedcarpriceprediction:
+    image: hammadurrehman/documents_usedcarpriceprediction:1.0
+    volumes:
+       - ai_system:/tmp
+    command:
+    - sh
+    - "-c"
+    - |
+      rm -rf /tmp/documents/ && mkdir -p /tmp/documents/ && cp -r /documents/ /tmp/;
+    
+  codebase_usedcarpriceprediction_training_nn:
+    image: hammadurrehman/codebase_usedcarpriceprediction_training_nn:1.0
+    volumes:
+       - ai_system:/tmp
+    depends_on:
+      - "knowledgebase_usedcarpriceprediction"
+      - "learningbase_usedcarpriceprediction"
+      - "activationbase_usedcarpriceprediction"
+      - "documents_usedcarpriceprediction"
+    command:
+    - sh
+    - "-c"
+    - |
+      rm -rf /tmp/codeBase/ && mkdir -p /tmp/codeBase/ && cp -r /codeBase/ /tmp/;
+      python3.11 /tmp/codeBase/carPrice_NN.py
+
+   
+volumes:
+  ai_system:
+    external: true
